@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -11,78 +9,193 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
-      ),
+        backgroundColor: Color(0xFF100000),
         body: Column(
           children: [
             Container(
-              width: double.infinity,
-              height: 20,
+              height: MediaQuery.of(context).size.height * 0.1,
+              color: Color(0xFF100000),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16.0),
+                    child: Image.asset('assets/logononame.png'),
+                  ),
+                  Expanded(
+                    child: Center(
+                    ),
+                  ),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xd4d4d4).withOpacity(1),
-                          offset: Offset(3, 3),
-                          blurRadius: 2,
-                          spreadRadius: 0,
-                        )
-                      ]),
-                  height: 100,
-                  width: 170,
-                  child: ElevatedButton(
-                    onPressed: (){Get.toNamed(Routes.BOOK);}, child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.book, size: 50),
-                      Text("Buku", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15))
-                    ],
+            Expanded(
+              flex: 2,
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.8,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [Color(0xFFF58634), Color(0xFFFED3237)],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
-                  ),
+                  borderRadius: BorderRadius.circular(16.0),
                 ),
-                SizedBox(
-                  width: 20,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0xd4d4d4).withOpacity(1),
-                          offset: Offset(3, 3),
-                          blurRadius: 2,
-                          spreadRadius: 0,
-                        )
-                      ]),
-                  height: 100,
-                  width: 170,
-                  child: ElevatedButton(
-                    onPressed: (){Get.toNamed(Routes.PEMINJAMAN);}, child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Icon(Icons.person, size: 50),
-                      Text("Pinjam", textAlign: TextAlign.left, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15))
-                    ],
-                  ),
-                  ),
-                ),
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 20),
-            ),
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: 10,
+                      left: 20,
+                      child: Text(
+                        'PINJAM BUKU \n'
+                            'PERPUSTAKAAN',
+                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                    ),
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: Text(
+                        '\nBUKU TERBARU',
+                        style: TextStyle(color: Colors.white, fontSize: 24),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 340,
+                      left: 10,
+                      right: 10,
+                      child: Container(
+                        height: 320, // set the height of the container
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 5,
+                          itemBuilder: (context, count) {
+                            return Padding(
+                              padding: const EdgeInsets.all(10.0),
+                              child: Container(
+                                width: 180,
+                                height: 320,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(16.0),
+                                  color: Colors.grey,
+                                ),
+                              ),
+                            );
+                          }
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 310,
+                      right: 10,
+                      child: InkWell(
+                        onTap: () {
+                          // handle the tap event here
+                        },
+                        child: Center(
+                          child: Text(
+                            'LAINNYA >>',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 50,
+                      right: 10,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          SizedBox(
+                            height: 170.0,
+                            child: Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // handle button tap event here
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: Size(10, 100),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    primary: Colors.white,
+                                  ),
+                                  child: Text('Button 1'),
+                                ),
+                                SizedBox(width: 40.0),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // handle button tap event here
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: Size(10, 100),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    primary: Colors.white,
+                                  ),
+                                  child: Text('Button 2'),
+                                ),
+                                SizedBox(height: 20.0),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 100.0,
+                            child: Row(
+                              children: [
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // handle button tap event here
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: Size(10, 100),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    primary: Colors.white,
+                                  ),
+                                  child: Text('Button 3'),
+                                ),
+                                SizedBox(width: 40.0),
+                                ElevatedButton(
+                                  onPressed: () {
+                                    // handle button tap event here
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    minimumSize: Size(10, 100),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    primary: Colors.white,
+                                  ),
+                                  child: Text('Button 4'),
+                                ),
+                                SizedBox(height: 20.0),
+                              ],
+                            ),
+                          ),
 
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Container(
+              height: MediaQuery.of(context).size.height * 0.1, // 30% of the screen height
+              color: Color(0xFF100000),
+              child: Center(
+                child: Text(
+                  'Judul 3',
+                  style: TextStyle(color: Colors.white, fontSize: 24),
+                ),
+              ),
+            ),
           ],
         )
     );
