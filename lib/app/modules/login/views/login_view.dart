@@ -41,10 +41,20 @@ class LoginView extends GetView<LoginController> {
                           SizedBox(height: 10.0), // tambahkan margin atas form di sini
                           TextFormField(
                             controller: controller.usernameController,
+                            cursorColor: Colors.white,
                             decoration: InputDecoration(
-                              labelText: "Username",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "USERNAME",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -57,13 +67,23 @@ class LoginView extends GetView<LoginController> {
                           SizedBox(height: 10.0), // tambahkan margin di antara form field
                           TextFormField(
                             controller: controller.passwordController,
+                            cursorColor: Colors.white,
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
-                              labelText: "Password",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "PASSWORD",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -78,7 +98,9 @@ class LoginView extends GetView<LoginController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Obx(() => controller.loading.value
-                                  ? CircularProgressIndicator()
+                                  ? CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
                                   : InkWell(
                                 onTap: () {
                                   controller.login();
@@ -99,7 +121,8 @@ class LoginView extends GetView<LoginController> {
                                       "LOGIN",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 22,
+                                        fontFamily: 'Hammersmith',
+                                        fontSize: 25,
                                       ),
                                     ),
                                   ),
@@ -112,6 +135,7 @@ class LoginView extends GetView<LoginController> {
                                     "Belum punya akun?",
                                     style: TextStyle(
                                       color: Colors.white,
+                                        fontFamily: 'Hammersmith'
                                     ),
                                   ),
                                   GestureDetector(
@@ -120,6 +144,7 @@ class LoginView extends GetView<LoginController> {
                                       "Sign Up",
                                       style: TextStyle(
                                         color: Color(0xFFF58634),
+                                        fontFamily: 'Hammersmith',
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
@@ -150,6 +175,7 @@ class LoginView extends GetView<LoginController> {
                 'Copyright ©Jo\'R 2024',
                 style: TextStyle(
                   color: Colors.white,
+                  fontFamily: 'Hammersmith',
                   fontWeight: FontWeight.bold,
                 ),
               ),

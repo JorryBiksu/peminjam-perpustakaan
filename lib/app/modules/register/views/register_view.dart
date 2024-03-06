@@ -40,10 +40,20 @@ class RegisterView extends GetView<RegisterController> {
                           SizedBox(height: 10.0), // tambahkan margin atas form di sini
                           TextFormField(
                             controller: controller.usernameController,
+                            cursorColor: Colors.white,
                             decoration: InputDecoration(
-                              labelText: "Username",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "USERNAME",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -56,13 +66,23 @@ class RegisterView extends GetView<RegisterController> {
                           SizedBox(height: 10.0), // tambahkan margin di antara form field
                           TextFormField(
                             controller: controller.namaController,
+                            cursorColor: Colors.white,
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
-                              labelText: "Nama",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "NAMA",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -75,13 +95,23 @@ class RegisterView extends GetView<RegisterController> {
                           SizedBox(height: 10.0),
                           TextFormField(
                             controller: controller.passwordController,
+                            cursorColor: Colors.white,
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
-                              labelText: "Password",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "PASSWORD",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -91,16 +121,26 @@ class RegisterView extends GetView<RegisterController> {
                               return null;
                             },
                           ),
-                          SizedBox(height: 20.0),
+                          SizedBox(height: 10.0),
                           TextFormField(
                             controller: controller.telpController,
+                            cursorColor: Colors.white,
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
-                              labelText: "Telepon",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "TELEPON",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -110,16 +150,26 @@ class RegisterView extends GetView<RegisterController> {
                               return null;
                             },
                           ),
-                          SizedBox(height: 20.0),
+                          SizedBox(height: 10.0),
                           TextFormField(
                             controller: controller.alamatController,
+                            cursorColor: Colors.white,
                             obscureText: true,
                             enableSuggestions: false,
                             autocorrect: false,
                             decoration: InputDecoration(
-                              labelText: "Alamat",
-                              labelStyle: TextStyle(color: Colors.white),
+                              labelText: "ALAMAT",
+                              labelStyle: TextStyle(
+                                  color: Colors.white,
+                                  fontFamily: 'Hammersmith',
+                                  fontSize: 20),
                               floatingLabelBehavior: FloatingLabelBehavior.auto,
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.white),
+                              ),
+                              border: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.grey),
+                              ),
                             ),
                             style: TextStyle(color: Colors.white),
                             validator: (value) {
@@ -134,7 +184,9 @@ class RegisterView extends GetView<RegisterController> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Obx(() => controller.loading.value
-                                  ? CircularProgressIndicator()
+                                  ? CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                              )
                                   : InkWell(
                                 onTap: () {
                                   controller.register();
@@ -155,7 +207,8 @@ class RegisterView extends GetView<RegisterController> {
                                       "SIGN UP",
                                       style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: 22,
+                                        fontFamily: 'Hammersmith',
+                                        fontSize: 25,
                                       ),
                                     ),
                                   ),
@@ -168,6 +221,7 @@ class RegisterView extends GetView<RegisterController> {
                                     "Sudah punya akun?",
                                     style: TextStyle(
                                       color: Colors.white,
+                                        fontFamily: 'Hammersmith'
                                     ),
                                   ),
                                   GestureDetector(
@@ -176,6 +230,7 @@ class RegisterView extends GetView<RegisterController> {
                                       "Login",
                                       style: TextStyle(
                                         color: Color(0xFFF58634),
+                                        fontFamily: 'Hammersmith',
                                         decoration: TextDecoration.underline,
                                       ),
                                     ),
@@ -206,6 +261,7 @@ class RegisterView extends GetView<RegisterController> {
                 'Copyright ©Jo\'R 2024',
                 style: TextStyle(
                   color: Colors.white,
+                  fontFamily: 'Hammersmith',
                   fontWeight: FontWeight.bold,
                 ),
               ),

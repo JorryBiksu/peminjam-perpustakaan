@@ -48,7 +48,10 @@ class HomeView extends GetView<HomeController> {
                       child: Text(
                         'PINJAM BUKU \n'
                             'PERPUSTAKAAN',
-                        style: TextStyle(color: Colors.white, fontSize: 24),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Hammersmith',
+                            fontSize: 24),
                       ),
                     ),
                     Positioned(
@@ -56,7 +59,10 @@ class HomeView extends GetView<HomeController> {
                       right: 10,
                       child: Text(
                         '\nBUKU TERBARU',
-                        style: TextStyle(color: Colors.white, fontSize: 24),
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Hammersmith',
+                            fontSize: 24),
                       ),
                     ),
                     Positioned(
@@ -96,7 +102,8 @@ class HomeView extends GetView<HomeController> {
                             'LAINNYA >>',
                             style: TextStyle(
                               color: Colors.white,
-                              fontSize: 16,
+                              fontFamily: 'Hammersmith',
+                              fontSize: 20,
                             ),
                           ),
                         ),
