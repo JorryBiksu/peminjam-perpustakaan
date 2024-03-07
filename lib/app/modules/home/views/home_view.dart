@@ -198,8 +198,12 @@ class HomeView extends GetView<HomeController> {
               color: Color(0xFF100000),
               child: Center(
                 child: Text(
-                  'Judul 3',
-                  style: TextStyle(color: Colors.white, fontSize: 24),
+                  'Copyright ©Jo\'R 2024',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Hammersmith',
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
             ),
