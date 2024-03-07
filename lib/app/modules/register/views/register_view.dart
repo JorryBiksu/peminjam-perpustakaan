@@ -96,9 +96,6 @@ class RegisterView extends GetView<RegisterController> {
                           TextFormField(
                             controller: controller.passwordController,
                             cursorColor: Colors.white,
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
                             decoration: InputDecoration(
                               labelText: "PASSWORD",
                               labelStyle: TextStyle(
@@ -125,9 +122,6 @@ class RegisterView extends GetView<RegisterController> {
                           TextFormField(
                             controller: controller.telpController,
                             cursorColor: Colors.white,
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
                             decoration: InputDecoration(
                               labelText: "TELEPON",
                               labelStyle: TextStyle(
@@ -154,9 +148,6 @@ class RegisterView extends GetView<RegisterController> {
                           TextFormField(
                             controller: controller.alamatController,
                             cursorColor: Colors.white,
-                            obscureText: true,
-                            enableSuggestions: false,
-                            autocorrect: false,
                             decoration: InputDecoration(
                               labelText: "ALAMAT",
                               labelStyle: TextStyle(

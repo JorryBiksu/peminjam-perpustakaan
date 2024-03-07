@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:peminjam_perpustakaan_kelas_c/app/data/model/response_register.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -16,15 +18,13 @@ class HomeView extends GetView<HomeController> {
               height: MediaQuery.of(context).size.height * 0.1,
               color: Color(0xFF100000),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween, // this will align the children to the far left and right of the container
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Image.asset('assets/logononame.png'),
                   ),
-                  Expanded(
-                    child: Center(
-                    ),
-                  ),
+
                 ],
               ),
             ),
@@ -108,7 +108,7 @@ class HomeView extends GetView<HomeController> {
                       ),
                     ),
                     Positioned(
-                      bottom: 50,
+                      bottom: 20,
                       right: 10,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -117,67 +117,139 @@ class HomeView extends GetView<HomeController> {
                             height: 170.0,
                             child: Row(
                               children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // handle button tap event here
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(10, 100),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // handle button tap event here
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: Size(10, 100),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        primary: Colors.white,
+                                      ),
+                                      child: Container(
+                                        width: 45, // specify the width here
+                                        height: 45, // specify the height here
+                                        child: Image.asset('assets/history.png'),
+                                      ),
                                     ),
-                                    primary: Colors.white,
-                                  ),
-                                  child: Text('Button 1'),
+                                    SizedBox(height: 2.0), // Spacer untuk memberikan jarak antara button dan teks
+                                    Text(
+                                      'HISTORY', // Teks yang ingin ditampilkan
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Hammersmith',
+                                        fontSize: 16, // Ubah ukuran teks sesuai kebutuhan Anda
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(width: 40.0),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // handle button tap event here
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(10, 100),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // handle button tap event here
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: Size(10, 100),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        primary: Colors.white,
+                                      ),
+                                      child: Container(
+                                        width: 45, // specify the width here
+                                        height: 45, // specify the height here
+                                        child: Image.asset('assets/koleksi.png'),
+                                      ),
                                     ),
-                                    primary: Colors.white,
-                                  ),
-                                  child: Text('Button 2'),
+                                    SizedBox(height: 2.0), // Spacer untuk memberikan jarak antara button dan teks
+                                    Text(
+                                      'KOLEKSI', // Teks yang ingin ditampilkan
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Hammersmith',
+                                        fontSize: 16, // Ubah ukuran teks sesuai kebutuhan Anda
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 20.0),
                               ],
                             ),
                           ),
                           SizedBox(
-                            height: 100.0,
+                            height: 120.0,
                             child: Row(
                               children: [
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // handle button tap event here
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(10, 100),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // handle button tap event here
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: Size(10, 100),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        primary: Colors.white,
+                                      ),
+                                      child: Container(
+                                        width: 45, // specify the width here
+                                        height: 45, // specify the height here
+                                        child: Image.asset('assets/petugas.png'),
+                                      ),
                                     ),
-                                    primary: Colors.white,
-                                  ),
-                                  child: Text('Button 3'),
+                                    SizedBox(height: 2.0), // Spacer untuk memberikan jarak antara button dan teks
+                                    Text(
+                                      'PETUGAS', // Teks yang ingin ditampilkan
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Hammersmith',
+                                        fontSize: 16, // Ubah ukuran teks sesuai kebutuhan Anda
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(width: 40.0),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    // handle button tap event here
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    minimumSize: Size(10, 100),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(10.0),
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        // handle button tap event here
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        minimumSize: Size(10, 100),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                        ),
+                                        primary: Colors.white,
+                                      ),
+                                      child: Container(
+                                        width: 45, // specify the width here
+                                        height: 45, // specify the height here
+                                        child: Image.asset('assets/about.png'),
+                                      ),
                                     ),
-                                    primary: Colors.white,
-                                  ),
-                                  child: Text('Button 4'),
+                                    SizedBox(height: 2.0), // Spacer untuk memberikan jarak antara button dan teks
+                                    Text(
+                                      'ABOUT', // Teks yang ingin ditampilkan
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontFamily: 'Hammersmith',
+                                        fontSize: 16, // Ubah ukuran teks sesuai kebutuhan Anda
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 SizedBox(height: 20.0),
                               ],
