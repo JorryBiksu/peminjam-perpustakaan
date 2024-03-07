@@ -52,8 +52,11 @@ class LoginController extends GetxController {
           final ResponseLogin responseLogin = ResponseLogin.fromJson(response.data);
           await StorageProvider.write(StorageKey.status, "logged");
           await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id!.toString());
+          await StorageProvider.write(StorageKey.username, responseLogin.data!.username!);
           Get.offAllNamed(Routes.HOME);
-        } else {
+
+
+      } else {
           Get.snackbar("Sorry", "Login failed", backgroundColor: Colors.orange);
         }
       }

@@ -181,6 +181,7 @@ class RegisterView extends GetView<RegisterController> {
                                   : InkWell(
                                 onTap: () {
                                   controller.register();
+                                  Get.back();
                                 },
                                 child: Container(
                                   width: 100,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_c/app/data/model/response_register.dart';
+import '../../../data/provider/storage_provider.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
 
@@ -8,8 +9,11 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
 
 
+
   @override
   Widget build(BuildContext context) {
+    String? username = StorageProvider.read(StorageKey.idUser);
+    String? idUser = StorageProvider.read(StorageKey.idUser);
     return Scaffold(
         backgroundColor: Color(0xFF100000),
         body: Column(
@@ -24,7 +28,17 @@ class HomeView extends GetView<HomeController> {
                     padding: const EdgeInsets.only(left: 16.0),
                     child: Image.asset('assets/logononame.png'),
                   ),
-
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: Text(
+                      '$username',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Hammersmith',
+                          fontSize: 24),
+                    ),
+                  ),
                 ],
               ),
             ),

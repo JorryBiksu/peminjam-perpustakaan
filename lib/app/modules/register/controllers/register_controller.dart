@@ -49,6 +49,7 @@ class RegisterController extends GetxController {
         );
         if (response.statusCode == 201) {
           Get.back();
+          Get.snackbar("Berhasil", "Akun berhasil ditambahkan", backgroundColor: Colors.green);
         } else {
           Get.snackbar("Sorry", "Login Gagal", backgroundColor: Colors.orange);
         }
