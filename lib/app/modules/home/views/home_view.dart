@@ -94,9 +94,7 @@ class HomeView extends GetView<HomeController> {
                       bottom: 310,
                       right: 10,
                       child: InkWell(
-                        onTap: () {
-                          // handle the tap event here
-                        },
+                        onTap: () => Get.toNamed(Routes.BOOK),
                         child: Center(
                           child: Text(
                             'LAINNYA >>',
