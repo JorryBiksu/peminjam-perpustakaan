@@ -12,7 +12,8 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    String? username = StorageProvider.read(StorageKey.idUser);
+    String? user = StorageProvider.read(StorageKey.idUser);
+    String? username = StorageProvider.read(StorageKey.username);
     String? idUser = StorageProvider.read(StorageKey.idUser);
     return Scaffold(
         backgroundColor: Color(0xFF100000),

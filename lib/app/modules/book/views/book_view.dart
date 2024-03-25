@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../data/constant/endpoint.dart';
 import '../../../data/model/response_book.dart';
 import '../../../data/provider/storage_provider.dart';
 import '../../../routes/app_pages.dart';
@@ -12,12 +13,9 @@ class BookView extends GetView<BookController> {
   const BookView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    String? username = StorageProvider.read(StorageKey.idUser);
+    String? username = StorageProvider.read(StorageKey.username);
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('BookView'),
-          centerTitle: true,
-        ),
+      backgroundColor: Color(0xFF100000),
         body: controller.obx((state) => Column(
           children: [
             Container(
@@ -82,28 +80,52 @@ class BookView extends GetView<BookController> {
                       ),
                     ),
                     Expanded(
-                      child: GridView.count(
-                        crossAxisCount: 2, // number of columns in the grid
-                        children: state!.map((dataBook) => GestureDetector(
-                          onTap: () => Get.toNamed(Routes.BUKU_DETAIL, parameters: {
-                            'id' : (dataBook.id ??0).toString(),
-                          }),
-                          child: Card(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.network(dataBook.gambar ?? '', height: 150,),
-                                Text("${dataBook.judul}"),
-                                Text("Penulis ${dataBook.penulis}\n${dataBook.penerbit} - ${dataBook.tahunTerbit}"),
-                                ElevatedButton(onPressed: ()=> Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
-                                  'id' : (dataBook.id ??0).toString(), 'judul' :dataBook.judul ?? '-'
-                                }), child: Text("Pinjam")),
-                              ],
+                      child: Container(
+                        child: GridView.count(
+                          crossAxisCount: 2, // number of columns in the grid
+                          mainAxisSpacing: 25, // jarak vertikal antara Card
+                          crossAxisSpacing: 25,
+                          childAspectRatio: 0.8,// jarak horizontal antara Card
+                          children: state!.map((dataBook) => GestureDetector(
+                            onTap: () => Get.toNamed(Routes.BUKU_DETAIL, parameters: {
+                              'id' : (dataBook.id ?? 0).toString(),
+                            }),
+                            child: Card(
+                              elevation: 5, // Tambahkan efek bayangan untuk Card
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10), // Tambahkan border radius sebesar 10 pixel
+                              ),
+                              child: SizedBox(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0), // Tambahkan jarak sebesar 8.0 pixel di semua sisi
+                                      child: Image.network(
+                                        "${Endpoint.image}${dataBook.gambar}",
+                                        height: 150, // Ukuran gambar dalam Card
+                                      ),
+                                    ),
+                                    Text("${dataBook.judul}"),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ElevatedButton(
+                                        onPressed: () => Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
+                                          'id' : (dataBook.id ?? 0).toString(),
+                                          'judul' :dataBook.judul ?? '-'
+                                        }),
+                                        child: Text("Pinjam"),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
-                          ),
-                        )).toList(),
+                          )).toList(),
+                        ),
                       ),
                     ),
+
                   ],
                 ),
               ),
