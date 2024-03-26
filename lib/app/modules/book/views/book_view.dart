@@ -32,7 +32,7 @@ class BookView extends GetView<BookController> {
                     top: 10,
                     right: 10,
                     child: Text(
-                      '$username',
+                      '$username'.toUpperCase(),
                       style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Hammersmith',
@@ -70,7 +70,7 @@ class BookView extends GetView<BookController> {
                     ),
                     Positioned(
                       top: 10,
-                      right: 10,
+                      right: 20,
                       child: Text(
                         '\nBUKU TERBARU',
                         style: TextStyle(
@@ -79,53 +79,74 @@ class BookView extends GetView<BookController> {
                             fontSize: 24),
                       ),
                     ),
-                    Expanded(
-                      child: Container(
-                        child: GridView.count(
-                          crossAxisCount: 2, // number of columns in the grid
-                          mainAxisSpacing: 25, // jarak vertikal antara Card
-                          crossAxisSpacing: 25,
-                          childAspectRatio: 0.8,// jarak horizontal antara Card
-                          children: state!.map((dataBook) => GestureDetector(
-                            onTap: () => Get.toNamed(Routes.BUKU_DETAIL, parameters: {
-                              'id' : (dataBook.id ?? 0).toString(),
-                            }),
-                            child: Card(
-                              elevation: 5, // Tambahkan efek bayangan untuk Card
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10), // Tambahkan border radius sebesar 10 pixel
-                              ),
-                              child: SizedBox(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0), // Tambahkan jarak sebesar 8.0 pixel di semua sisi
-                                      child: Image.network(
-                                        "${Endpoint.image}${dataBook.gambar}",
-                                        height: 150, // Ukuran gambar dalam Card
+                    Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Container(
+                          height: MediaQuery.of(context).size.height * 0.6,
+                          child: GridView.count(
+                            crossAxisCount: 2, // number of columns in the grid
+                            mainAxisSpacing: 25, // jarak vertikal antara Card
+                            crossAxisSpacing: 25,
+                            childAspectRatio: 0.75,// jarak horizontal antara Card
+                            children: state!.map((dataBook) => GestureDetector(
+                              onTap: () => Get.toNamed(Routes.BUKU_DETAIL, parameters: {
+                                'id' : (dataBook.id ?? 0).toString(),
+                              }),
+                              child: Card(
+                                elevation: 5, // Tambahkan efek bayangan untuk Card
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10), // Tambahkan border radius sebesar 10 pixel
+                                ),
+                                child: SizedBox(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.all(8.0), // Tambahkan jarak sebesar 8.0 pixel di semua sisi
+                                        child: Image.network(
+                                          "${Endpoint.image}${dataBook.gambar}",
+                                          height: 200, // Ukuran gambar dalam Card
+                                        ),
                                       ),
-                                    ),
-                                    Text("${dataBook.judul}"),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: ElevatedButton(
-                                        onPressed: () => Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
-                                          'id' : (dataBook.id ?? 0).toString(),
-                                          'judul' :dataBook.judul ?? '-'
-                                        }),
-                                        child: Text("Pinjam"),
-                                      ),
-                                    ),
-                                  ],
+                                      Expanded(
+                                        child: LayoutBuilder(
+                                          builder: (BuildContext context, BoxConstraints constraints) {
+                                            final double textWidth = constraints.maxWidth;
+                                            double textSize = 16;
+
+                                            if (textWidth > 30 && dataBook.judul!.length > 10) {
+                                              textSize = 12;
+                                            }
+
+
+                                            return Center(
+                                              child: Text(
+                                                "${dataBook.judul}".toUpperCase(),
+                                                style: TextStyle(
+                                                  color: Color(0xFF100000),
+                                                  fontFamily: 'Hammersmith',
+                                                  fontSize: textSize,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                                maxLines: 10,
+                                                overflow: TextOverflow.ellipsis,
+                                                softWrap: false,
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          )).toList(),
+                            )).toList(),
+                          ),
                         ),
                       ),
                     ),
-
                   ],
                 ),
               ),

@@ -71,7 +71,7 @@ class HomeView extends GetView<HomeController> {
                     ),
                     Positioned(
                       top: 10,
-                      right: 10,
+                      right: 20,
                       child: Text(
                         '\nBUKU TERBARU',
                         style: TextStyle(
@@ -83,7 +83,7 @@ class HomeView extends GetView<HomeController> {
                     Positioned(
                       bottom: 340,
                       left: 10,
-                      right: 10,
+                      right: 20,
                       child: Container(
                         height: 320, // set the height of the container
                         child: ListView.builder(
