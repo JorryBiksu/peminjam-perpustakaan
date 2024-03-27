@@ -116,8 +116,8 @@ class BookView extends GetView<BookController> {
                                             final double textWidth = constraints.maxWidth;
                                             double textSize = 16;
 
-                                            if (textWidth > 30 && dataBook.judul!.length > 10) {
-                                              textSize = 12;
+                                            if (textWidth > 30 && dataBook.judul!.length > 20) {
+                                              textSize = 10;
                                             }
 
 
