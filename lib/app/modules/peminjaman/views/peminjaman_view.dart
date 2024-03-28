@@ -26,6 +26,8 @@ class PeminjamanView extends GetView<PeminjamanController> {
           separatorBuilder: (BuildContext context, int index) {
             return const Divider();
           },
-        )));
+        )
+        )
+    );
   }
 }

@@ -7,12 +7,16 @@ import '../../../data/constant/endpoint.dart';
 import '../../../data/model/response_book.dart';
 import '../../../data/provider/api_provider.dart';
 
-class BukuDetailController extends GetxController with StateMixin<Data?> {
+class BukuDetailController extends GetxController with StateMixin<List<Data>> {
+  String? id;
+  var dataBook = <Data>[].obs;
+  //TODO: Implement BookController
   final count = 0.obs;
 
   @override
   void onInit() {
     super.onInit();
+    getData();
   }
 
   @override
@@ -25,31 +29,34 @@ class BukuDetailController extends GetxController with StateMixin<Data?> {
     super.onClose();
   }
 
-  getBukuById(String id) async {
+  getData() async {
     change(null, status: RxStatus.loading());
-    try {
-      final response = await ApiProvider.instance().get(Endpoint.book + '/$id');
+    try{
+
+      final response = await ApiProvider.instance().get("${Endpoint
+          .book}/${Get.parameters['id']}");
+
       if (response.statusCode == 200) {
-        final ResponseBook responseBook = ResponseBook.fromJson(response.data);
-        if (responseBook.data!.isEmpty) {
+        final ResponseBook responsePinjam = ResponseBook.fromJson(response.data);
+        if (responsePinjam.data!.isEmpty){
           change(null, status: RxStatus.empty());
         } else {
-          change(responseBook.data![0], status: RxStatus.success());
+          change(responsePinjam.data, status: RxStatus.success());
         }
       } else {
         change(null, status: RxStatus.error("Gagal mengambil data"));
       }
-    } on DioError catch (e) {
+    } on DioException catch (e) {
       if (e.response != null) {
-        if (e.response?.data != null) {
-          log("dio ${e.response?.data['message']}");
+        if (e.response?.data != null){
+          log(("dio ${e.response?.data['message']}"));
           change(null, status: RxStatus.error("dio ${e.response?.data['message']}"));
         }
       } else {
-        change(null, status: RxStatus.error("cek " + (e.message ?? "")));
+        change(null, status: RxStatus.error("cek "+(e.message ?? "")));
       }
     } catch (e) {
-      change(null, status: RxStatus.error("catch " + e.toString()));
+      change(null, status: RxStatus.error("catch "+e.toString()));
     }
   }
 }
