@@ -28,9 +28,14 @@ class LoginController extends GetxController {
     super.onReady();
 
     String status = StorageProvider.read(StorageKey.status);
-    log("status : $status");
+    String role = StorageProvider.read(StorageKey.role);
+    log("status : $status, role : $role");
     if (status == 'logged') {
-      Get.offAllNamed(Routes.HOME);
+      if (role == 'PEMINJAM') {
+        Get.offAllNamed(Routes.HOME);
+      } else {
+        Get.offAllNamed(Routes.HOME_ADMIN);
+      }
     }
   }
 
@@ -51,12 +56,10 @@ class LoginController extends GetxController {
         if (response.statusCode == 200) {
           final ResponseLogin responseLogin = ResponseLogin.fromJson(response.data);
           await StorageProvider.write(StorageKey.status, "logged");
+          await StorageProvider.write(StorageKey.role, responseLogin.data!.role!);
           await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id!.toString());
           await StorageProvider.write(
               StorageKey.username, usernameController.text.toString());
-          Get.offAllNamed(Routes.HOME);
-
-
       } else {
           Get.snackbar("Sorry", "Login failed", backgroundColor: Colors.orange);
         }

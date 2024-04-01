@@ -1,13 +1,19 @@
 import 'package:get/get.dart';
 
+import '../modules/add_book/bindings/add_book_binding.dart';
+import '../modules/add_book/views/add_book_view.dart';
 import '../modules/add_peminjaman/bindings/add_peminjaman_binding.dart';
 import '../modules/add_peminjaman/views/add_peminjaman_view.dart';
 import '../modules/book/bindings/book_binding.dart';
 import '../modules/book/views/book_view.dart';
+import '../modules/book_admin/bindings/book_admin_binding.dart';
+import '../modules/book_admin/views/book_admin_view.dart';
 import '../modules/buku_detail/bindings/buku_detail_binding.dart';
 import '../modules/buku_detail/views/buku_detail_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/home_admin/bindings/home_admin_binding.dart';
+import '../modules/home_admin/views/home_admin_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/peminjaman/bindings/peminjaman_binding.dart';
@@ -57,6 +63,21 @@ class AppPages {
       name: _Paths.BUKU_DETAIL,
       page: () => const BukuDetailView(),
       binding: BukuDetailBinding(),
+    ),
+    GetPage(
+      name: _Paths.HOME_ADMIN,
+      page: () => const HomeAdminView(),
+      binding: HomeAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOK_ADMIN,
+      page: () => const BookAdminView(),
+      binding: BookAdminBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_BOOK,
+      page: () => const AddBookView(),
+      binding: AddBookBinding(),
     ),
   ];
 }

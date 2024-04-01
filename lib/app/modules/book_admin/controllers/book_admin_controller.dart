@@ -1,15 +1,15 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
 import '../../../data/constant/endpoint.dart';
 import '../../../data/model/response_book.dart';
-import '../../../data/model/response_pinjam.dart';
 import '../../../data/provider/api_provider.dart';
-import '../../../data/provider/storage_provider.dart';
 
-class BukuDetailController extends GetxController  with StateMixin<List<Data>>{
+class BookAdminController extends GetxController with StateMixin<List<Data>>{
+  //TODO: Implement BookController
 
   final count = 0.obs;
   @override
@@ -27,20 +27,18 @@ class BukuDetailController extends GetxController  with StateMixin<List<Data>>{
   void onClose() {
     super.onClose();
   }
-
   getData() async {
     change(null, status: RxStatus.loading());
     try{
 
-      final response = await ApiProvider.instance().get("${Endpoint
-          .book}/${Get.parameters['id']!}");
-
+      final response = await ApiProvider.instance().get(Endpoint.book,
+      );
       if (response.statusCode == 200) {
         final ResponseBook responseBook = ResponseBook.fromJson(response.data);
         if (responseBook.data!.isEmpty){
           change(null, status: RxStatus.empty());
         } else {
-          change(responseBook.data!, status: RxStatus.success());
+          change(responseBook.data, status: RxStatus.success());
         }
       } else {
         change(null, status: RxStatus.error("Gagal mengambil data"));
