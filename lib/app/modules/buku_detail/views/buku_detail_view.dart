@@ -10,17 +10,16 @@ class BukuDetailView extends GetView<BukuDetailController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('PeminjamanView'),
-          centerTitle: true,
-        ),
+      appBar: AppBar(
+        title: const Text('PeminjamanView'),
+        centerTitle: true,
+      ),
         body: controller.obx((state) => ListView.separated(
           itemCount: state!.length,
           itemBuilder: (ctx, index) {
             return ListTile(
               title: Text("${state[index].judul}"),
-              subtitle: Text("${state[index].penerbit}"),
-              trailing: Text("${state[index].tahunTerbit}"),
+              subtitle: Text("${state[index].penulis}"),
             );
           },
           separatorBuilder: (BuildContext context, int index) {

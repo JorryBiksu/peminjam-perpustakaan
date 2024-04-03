@@ -32,12 +32,15 @@ class HomeAdminView extends GetView<HomeAdminController> {
                   Positioned(
                     top: 10,
                     right: 10,
-                    child: Text(
-                      '$username',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Hammersmith',
-                          fontSize: 24),
+                    child: InkWell(
+                      onTap: showLogoutDialog,
+                      child: Text(
+                        '$username',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Hammersmith',
+                            fontSize: 24),
+                      ),
                     ),
                   ),
                 ],
@@ -112,7 +115,7 @@ class HomeAdminView extends GetView<HomeAdminController> {
                         onTap: () => Get.toNamed(Routes.BOOK_ADMIN),
                         child: Center(
                           child: Text(
-                            'LAINNYA >>',
+                            'TAMBAH BUKU >>',
                             style: TextStyle(
                               color: Colors.white,
                               fontFamily: 'Hammersmith',
@@ -296,4 +299,33 @@ class HomeAdminView extends GetView<HomeAdminController> {
         )
     );
   }
+}
+void showLogoutDialog() {
+  Get.dialog(
+    AlertDialog(
+      title: Text('Logout'),
+      content: Text('Are you sure you want to logout?'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            // Close the dialog without logging out
+            Get.back();
+          },
+          child: Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            // Logout the user and navigate to the login page
+            // You can use the `StorageProvider` to clear the user's session data
+            // and then navigate to the login page using `Get.offNamed()`
+
+            // Example:
+            StorageProvider.clearAll();
+            Get.offNamed(Routes.LOGIN);
+          },
+          child: Text('Logout'),
+        ),
+      ],
+    ),
+  );
 }

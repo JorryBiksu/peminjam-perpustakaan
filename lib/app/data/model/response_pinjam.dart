@@ -71,8 +71,8 @@ class DataPinjam {
     book = json['book'] != null ? Book.fromJson(json['book']) : null;
   }
   int? id;
-  String? userId;
-  String? bookId;
+  int? userId;
+  int? bookId;
   String? tanggalPinjam;
   String? tanggalKembali;
   String? status;
@@ -133,11 +133,11 @@ class Book {
     updatedAt = json['updated_at'];
   }
   int? id;
-  String? kategoriId;
+  int? kategoriId;
   String? judul;
   String? penulis;
   String? penerbit;
-  String? tahunTerbit;
+  int? tahunTerbit;
   String? createdAt;
   String? updatedAt;
 
@@ -189,7 +189,7 @@ class User {
   int? id;
   String? username;
   String? nama;
-  String? telp;
+  int? telp;
   String? alamat;
   String? role;
   String? createdAt;

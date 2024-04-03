@@ -31,12 +31,15 @@ class BookView extends GetView<BookController> {
                   Positioned(
                     top: 10,
                     right: 10,
-                    child: Text(
-                      '$username'.toUpperCase(),
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Hammersmith',
-                          fontSize: 24),
+                    child: InkWell(
+                      onTap: showLogoutDialog,
+                      child: Text(
+                        '$username',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Hammersmith',
+                            fontSize: 24),
+                      ),
                     ),
                   ),
                 ],
@@ -91,8 +94,10 @@ class BookView extends GetView<BookController> {
                             crossAxisSpacing: 25,
                             childAspectRatio: 0.75,// jarak horizontal antara Card
                             children: state!.map((dataBook) => GestureDetector(
-                              onTap: () => Get.toNamed(Routes.BUKU_DETAIL, parameters: {
+                              onTap: () => Get.toNamed(Routes.ADD_PEMINJAMAN, parameters: {
                                 'id' : (dataBook.id ?? 0).toString(),
+                                'judul' : dataBook.judul ?? '-',
+                                'gambar' : (dataBook.gambar ?? 0).toString()
                               }),
                               child: Card(
                                 elevation: 5, // Tambahkan efek bayangan untuk Card
@@ -170,4 +175,33 @@ class BookView extends GetView<BookController> {
         )
     );
   }
+}
+void showLogoutDialog() {
+  Get.dialog(
+    AlertDialog(
+      title: Text('Logout'),
+      content: Text('Are you sure you want to logout?'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            // Close the dialog without logging out
+            Get.back();
+          },
+          child: Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            // Logout the user and navigate to the login page
+            // You can use the `StorageProvider` to clear the user's session data
+            // and then navigate to the login page using `Get.offNamed()`
+
+            // Example:
+            StorageProvider.clearAll();
+            Get.offNamed(Routes.LOGIN);
+          },
+          child: Text('Logout'),
+        ),
+      ],
+    ),
+  );
 }

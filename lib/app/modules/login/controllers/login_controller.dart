@@ -31,10 +31,10 @@ class LoginController extends GetxController {
     String role = StorageProvider.read(StorageKey.role);
     log("status : $status, role : $role");
     if (status == 'logged') {
-      if (role == 'PEMINJAM') {
-        Get.offAllNamed(Routes.HOME);
-      } else {
+      if (role == 'PETUGAS') {
         Get.offAllNamed(Routes.HOME_ADMIN);
+      } else {
+        Get.offAllNamed(Routes.HOME);
       }
     }
   }
@@ -43,6 +43,7 @@ class LoginController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
   login() async {
     loading(true);
     try {
@@ -60,6 +61,16 @@ class LoginController extends GetxController {
           await StorageProvider.write(StorageKey.idUser, responseLogin.data!.id!.toString());
           await StorageProvider.write(
               StorageKey.username, usernameController.text.toString());
+          String status = StorageProvider.read(StorageKey.status);
+          String role = StorageProvider.read(StorageKey.role);
+          log("status : $status, role : $role");
+          if (status == 'logged') {
+            if (role == 'PETUGAS') {
+              Get.offAllNamed(Routes.HOME_ADMIN);
+            } else {
+              Get.offAllNamed(Routes.HOME);
+            }
+          }
       } else {
           Get.snackbar("Sorry", "Login failed", backgroundColor: Colors.orange);
         }

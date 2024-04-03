@@ -35,7 +35,7 @@ class HomeAdminController extends GetxController with StateMixin<List<DataLogin>
     try {
       final response = await ApiProvider.instance().get(Endpoint.login,
           queryParameters: {"id": StorageProvider.read(StorageKey.idUser),
-          "role": "PEMINJAM"});
+          "role": "PETUGAS"});
       if (response.statusCode == 200) {
         final ResponseLogin responseLogin = ResponseLogin.fromJson(response.data);
         if (responseLogin.data == null) {

@@ -32,12 +32,15 @@ class HomeView extends GetView<HomeController> {
                   Positioned(
                     top: 10,
                     right: 10,
-                    child: Text(
-                      '$username',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontFamily: 'Hammersmith',
-                          fontSize: 24),
+                    child: InkWell(
+                      onTap: showLogoutDialog,
+                      child: Text(
+                        '$username',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Hammersmith',
+                            fontSize: 24),
+                      ),
                     ),
                   ),
                 ],
@@ -169,7 +172,7 @@ class HomeView extends GetView<HomeController> {
                                   children: [
                                     ElevatedButton(
                                       onPressed: () {
-                                        // handle button tap event here
+                                        Get.toNamed(Routes.PEMINJAMAN);// handle button tap event here
                                       },
                                       style: ElevatedButton.styleFrom(
                                         minimumSize: Size(10, 100),
@@ -296,4 +299,34 @@ class HomeView extends GetView<HomeController> {
         )
     );
   }
+}
+
+void showLogoutDialog() {
+  Get.dialog(
+    AlertDialog(
+      title: Text('Logout'),
+      content: Text('Are you sure you want to logout?'),
+      actions: [
+        TextButton(
+          onPressed: () {
+            // Close the dialog without logging out
+            Get.back();
+          },
+          child: Text('Cancel'),
+        ),
+        TextButton(
+          onPressed: () {
+            // Logout the user and navigate to the login page
+            // You can use the `StorageProvider` to clear the user's session data
+            // and then navigate to the login page using `Get.offNamed()`
+
+            // Example:
+            StorageProvider.clearAll();
+            Get.offNamed(Routes.LOGIN);
+          },
+          child: Text('Logout'),
+        ),
+      ],
+    ),
+  );
 }
