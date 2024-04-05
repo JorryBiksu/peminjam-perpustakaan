@@ -44,7 +44,8 @@ class RegisterController extends GetxController {
               "nama": namaController.text.toString(),
               "alamat": alamatController.text.toString(),
               "password": passwordController.text.toString(),
-              "telp": int.parse(telpController.text.toString())
+              "telp": int.parse(telpController.text.toString()),
+              "role":"PEMINJAM"
             }
         );
         if (response.statusCode == 201) {

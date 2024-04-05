@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:peminjam_perpustakaan_kelas_c/app/data/model/response_login.dart';
 import 'package:peminjam_perpustakaan_kelas_c/app/data/constant/endpoint.dart';
 import 'package:peminjam_perpustakaan_kelas_c/app/data/provider/api_provider.dart';
+import 'package:peminjam_perpustakaan_kelas_c/app/modules/book/controllers/book_controller.dart';
 
 import '../../../data/provider/storage_provider.dart';
 
@@ -12,6 +13,7 @@ class HomeController extends GetxController with StateMixin<List<DataLogin>>  {
   //TODO: Implement HomeController
 
   final count = 0.obs;
+  final BookController _bookController = Get.find();
   Rx<String?> username = "".obs;
 
   @override
