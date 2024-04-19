@@ -11,11 +11,13 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFF100000),
       appBar: AppBar(
-        backgroundColor: Color(0xff60b7f6),
+        backgroundColor: Color(0xFFF58634),
         title: Text(
           'Pinjam Buku ${Get.parameters['judul'].toString()}',
           style: TextStyle(
+              color: Color(0xFFFFFFFF),
               fontFamily: 'Montserrat',
               fontSize: 15.0,
               letterSpacing: -0.5,
@@ -44,27 +46,6 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                       ),
                     ),
 
-
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    alignment:Alignment.center,
-                    child: const Text(
-                      'Pinjam buku sesukamu, tapi jangan lupa di kembalikan ya!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        height: 1.7,
-                        fontSize: 16.0,
-                        color: Color(0xFF61677D),
-                        letterSpacing: -0.3,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-
-                  SizedBox(
-                    height: 35,
-                  ),
-
                   Container(
                     child: Column(
                       children: [
@@ -80,7 +61,7 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                                   'Tanggal Pinjam',
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    color: Color(0xFF61677D),
+                                    color: Color(0xFFFFFFFF),
                                     letterSpacing: -0.2,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -93,6 +74,7 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                                     controller: controller.tanggalPinjamController,
                                     decoration: InputDecoration(
                                       hintText: 'Masukan Tanggal Pinjam',
+                                      hintStyle: TextStyle(color: Color(0xFFFFFFFF)),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
@@ -128,7 +110,7 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                                   'Tanggal Kembali',
                                   style: TextStyle(
                                     fontSize: 14.0,
-                                    color: Color(0xFF61677D),
+                                    color: Color(0xFFFFFFFF),
                                     letterSpacing: -0.2,
                                     fontWeight: FontWeight.bold,
                                   ),
@@ -141,6 +123,7 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                                     controller: controller.tanggalKembaliController,
                                     decoration: InputDecoration(
                                       hintText: 'Masukan Tanggal Kembali',
+                                      hintStyle: TextStyle(color: Color(0xFFFFFFFF)),
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10),
                                       ),
@@ -172,31 +155,33 @@ class AddPeminjamanView extends GetView<AddPeminjamanController> {
                       children: [
                         Obx(() => controller.loadingaddpinjam.value?
                         CircularProgressIndicator():
-                        SizedBox(
-                          width: double.infinity,
-                          height: 50.0,
-                          child: ElevatedButton(
-                            onPressed: (){
+                        InkWell(
+                            onTap: (){
                               controller.postPinjamBuku();
                             },
-                            child: Text(
-                              'Pinjam Buku',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontFamily: 'Montserrat',
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 18.0
+                            child: Container(
+                              width: double.infinity,
+                              height: 40,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Color(0xFFF58634), Color(0xFFFED3237)],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                                borderRadius: BorderRadius.circular(10),
                               ),
-                            ),
-
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Color(0xff60b7f6),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50),
+                              child: Center(
+                                child: Text(
+                                  "PINJAM BUKU",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontFamily: 'Hammersmith',
+                                    fontSize: 25,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
-                        )
                         )
                       ],
                     ),

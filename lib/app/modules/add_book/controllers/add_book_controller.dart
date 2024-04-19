@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:open_file/open_file.dart';
 import '../../../data/constant/endpoint.dart';
 import '../../../data/provider/api_provider.dart';
 import 'package:dio/src/form_data.dart' as dioFormData;
@@ -13,6 +14,7 @@ import 'package:file_picker/file_picker.dart';
 class AddBookController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final TextEditingController kategoriId = TextEditingController();
+  final TextEditingController gambarController = TextEditingController();
   final TextEditingController judulController = TextEditingController();
   final TextEditingController penulisController = TextEditingController();
   final TextEditingController penerbitController = TextEditingController();
@@ -40,35 +42,6 @@ class AddBookController extends GetxController {
     super.onClose();
   }
 
-  Future<void> pickImageFromStorage() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['jpg', 'jpeg', 'png'],
-    );
-
-    if (result != null) {
-      PlatformFile file = result.files.first;
-
-      // Periksa apakah properti bytes tidak bernilai null sebelum digunakan
-      if (file.bytes != null) {
-        image = File.fromRawPath(file.bytes!);
-        imageFile = image;
-
-        // Log informasi gambar
-        print('Image picked:');
-        print('Name: ${file.name}');
-        print('Size: ${file.size}');
-        print('Bytes length: ${file.bytes!.length}');
-
-        Get.snackbar('Success', 'Image picked: ${file.name}');
-      } else {
-        Get.snackbar('Error', 'File bytes are null');
-      }
-    } else {
-      Get.snackbar('Error', 'No image selected');
-    }
-  }
-
 
   Future<void> addBook() async {
     loading.value = true;
@@ -81,7 +54,7 @@ class AddBookController extends GetxController {
           "judul": judulController.text,
           "penulis": penulisController.text,
           "penerbit": penerbitController.text,
-          "gambar": await dio.MultipartFile.fromFile(image!.path, filename: 'gambar.jpg'),
+          "gambar": gambarController.text,
           "tahun_terbit": tahunController.text,
         });
 

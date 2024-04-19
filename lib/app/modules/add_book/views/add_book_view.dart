@@ -40,29 +40,11 @@ class AddBookView extends GetView<AddBookController> {
                   controller: controller.penerbitController,
                 ),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    controller.pickImageFromStorage();
-                    if (controller.imageFile != null) {
-                      print('Selected image file: ${controller.imageFile?.path}');
-                    }
-                  },
-                  child: Text('Upload Gambar'),
+                TextFormField(
+                  decoration: InputDecoration(labelText: 'Gambar'),
+                  controller: controller.gambarController,
                 ),
                 SizedBox(height: 20),
-                Container(
-                  alignment: Alignment.center,
-                  child: controller.imageFile != null
-                      ? Image.file(
-                    controller.imageFile!,
-                    width: 150,
-                    height: 150,
-                    fit: BoxFit.cover,
-                  )
-                      : Text('Belum ada gambar dipilih'), // Teks jika belum ada gambar yang diupload
-                ),
-                SizedBox(height: 20),
-
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Tahun Terbit'),
                   controller: controller.tahunController,
